@@ -26,7 +26,8 @@ func createEvent(context *gin.Context) {
 		return
 	}
 
-	event.UserID = 1
+	userId := context.GetInt64("userId")
+	event.UserID = userId
 
 	err = event.Save()
 

@@ -12,7 +12,7 @@ type Event struct {
 	Description string    `binding:"required"`
 	Location    string    `binding:"required"`
 	DateTime    time.Time `binding:"required"`
-	UserID      int
+	UserID      int64
 }
 
 func (e *Event) Save() error {
@@ -85,7 +85,7 @@ func GetAllEvents() ([]Event, error) {
 
 	for rows.Next() {
 		var event Event
-		err := rows.Scan(&event.ID, &event.Name, &event.Description, &event.Description, &event.DateTime, &event.UserID)
+		err := rows.Scan(&event.ID, &event.Name, &event.Description, &event.Location, &event.DateTime, &event.UserID)
 		if err != nil {
 			return nil, err
 		}
